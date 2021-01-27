@@ -71,7 +71,7 @@
 
 
 
-        <brandDialog :brandDialogVisible.sync="brandDialogVisible" :editMsg="editMsg3" @closeDialog2="closeDialog2"
+        <brandDialog :brandDialogVisible.sync="brandDialogVisible" :brandArray="brandtypeArray" :editMsg="editMsg3" @closeDialog2="closeDialog2"
                      @createAdd2="createAdd2" :inputLabel="label"/>
         <brandManageDialog :brandManageDialogVisible.sync="brandManageDialogVisible" :editMsg="editMsg2"
                            @closeDialog3="closeDialog3" @createAdd3="createAdd3" :inputLabel="label"/>
@@ -145,6 +145,7 @@
                                         }
                                     )
                                     this.getBrandData(1)
+                                    this.getBrand()
                                 }
 
                             })
@@ -319,6 +320,7 @@
                             )
                             this.brandManageDialogVisible = false
                             this.getBrandData(1)
+                            this.getBrand()
                         }
                     })
                 } else {
@@ -334,6 +336,7 @@
                             )
                             this.brandManageDialogVisible = false
                             this.getBrandData(1)
+                            this.getBrand()
                         }
                     })
                 }
@@ -413,8 +416,8 @@
                             obj.createTime = this.$moment(item.createTime).format('YYYY-MM-DD HH:mm:ss')
                             obj.location = item.lng + ',' + item.lat
                             obj.operateFlag = ['修改', '|', '删除']
-                            obj.brand = item.brands ? item.brands[0].name : ''
-                            obj.brandId = item.brands ? item.brands[0].id : ''
+                            obj.brand = (item.brands[0] &&item.brands[0]!=null)? item.brands[0].name : ''
+                            obj.brandId = (item.brands[0] &&item.brands[0]!=null)? item.brands[0].id : ''
                             obj.id = item.id
                         }
                         newArray.push(obj)
@@ -449,6 +452,13 @@
                         } else if (item.type == 2) {
                             obj.type = '类型二'
                         } else if (item.type == 3) {
+                            obj.type = '类型三'
+                        }
+                        if (item.type == '类型一') {
+                            obj.type = '类型一'
+                        } else if (item.type == '类型二') {
+                            obj.type = '类型二'
+                        } else if (item.type == '类型三') {
                             obj.type = '类型三'
                         }
                         array.push(obj)

@@ -28,7 +28,8 @@ axios.interceptors.response.use( (res)=> {
     else {
         // 统一处理提示
         Message.error({
-            message: res.data.msg
+            message: res.data.msg,
+            duration:2000
         })
         return Promise.reject(res.data)
     }
@@ -38,7 +39,9 @@ axios.interceptors.response.use( (res)=> {
     return Promise.reject(error);
 });
 
-let baseUrl="https://prod.mm-iworld.com/sz-map";
+// let baseUrl="https://prod.mm-iworld.com/sz-map";
+let baseUrl="http://192.168.11.243:8080";
+
 
 
 export const Login=(url,params)=>{

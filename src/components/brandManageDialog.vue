@@ -87,7 +87,9 @@
         },
         watch:{
             editMsg(val){
+                console.log(val)
                 this.$set(this.form,'name',val.name)
+
                 this.$set(this.form,'bubbleType',val.type)
             }
         }

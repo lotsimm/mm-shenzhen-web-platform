@@ -31,8 +31,6 @@
 </template>
 
 <script>
-    import * as api from "@/api/home";
-
     export default {
         name: "brandDialog.vue",
         data(){
@@ -72,7 +70,6 @@
                         { required: true, message: '请选择品牌', trigger: 'blur' }
                     ],
                 },
-                brandArray:[]
             }
         },
         props:{
@@ -88,6 +85,12 @@
                     return{
 
                     }
+                }
+            },
+            brandArray:{
+                type:Array,
+                default() {
+                    return [];
                 }
             }
         },
@@ -115,16 +118,8 @@
             },
             handleClose(){
                 this.$emit('update:brandDialogVisible',false)
-            },
-            getBrand(){
-                api.brandPage({
-                    current: 1,
-                    size: 10
-                }).then(res=>{
-                    this.brandArray = res.data.records
-                    console.log(res)
-                })
             }
+
         },
     watch:{
         editMsg(val){
@@ -134,10 +129,6 @@
             this.$set(this.form,'brand',val.brandId)
         }
     },
-        mounted() {
-            this.getBrand()
-
-        }
     }
 </script>
 

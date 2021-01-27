@@ -1,24 +1,24 @@
 <template>
     <div class="home">
-        <div class="home-single" @click="goPrimary ">
+        <div class="home-single" >
             <p>深圳小学已打点</p>
             <span>{{primaryNum}}所</span>
-            <button>管理</button>
+            <button style="cursor: pointer" @click="goPrimary ">管理</button>
         </div>
-        <div class="home-single" @click="goMiddle">
+        <div class="home-single" >
             <p>深圳中学已打点</p>
             <span>{{middleNum}}所</span>
-            <button>管理</button>
+            <button style="cursor: pointer" @click="goMiddle">管理</button>
         </div>
-        <div class="home-single" @click="goShop">
+        <div class="home-single" >
             <p>小店已打点</p>
             <span>{{shopNum}}所</span>
-            <button>管理</button>
+            <button style="cursor: pointer" @click="goShop">管理</button>
         </div>
-        <div class="home-single" @click="goUniform">
+        <div class="home-single" >
             <p>校服品牌已打点</p>
             <span>{{uniformNum}}所</span>
-            <button>管理</button>
+            <button style="cursor: pointer" @click="goUniform">管理</button>
 
         </div>
     </div>
@@ -55,7 +55,6 @@
                     this.middleNum = res.data['中学']?res.data['中学']:0
                     this.shopNum = res.data['小店']?res.data['小店']:0
                     this.uniformNum = res.data['直营']?res.data['直营']:0
-
                 })
             }
         },
