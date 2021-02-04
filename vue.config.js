@@ -42,18 +42,18 @@ module.exports = {
     // webpack-dev-server 相关配置
     devServer: {
         open: process.platform === 'darwin',
-        host: '192.168.11.186',
+        host: 'localhost',
         port: 8080,
         https: false,
         hotOnly: false,
         proxy: {
             // 设置代理
             // proxy all requests starting with /api to jsonplaceholder
-            'http://localhost:8080/': {
-                target: 'http://192.168.11.243:8080', //真实请求的目标地址
-                changeOrigin: true,
+            '/api': {
+                target: 'https://prod.mm-iworld.com/sz-map', //真实请求的目标地址
+                changeOrigin: false,
                 pathRewrite: {
-                    '^http://localhost:8080/': ''
+                    '^/api': '/'
                 }
             }
         },

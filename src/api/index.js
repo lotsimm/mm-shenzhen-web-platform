@@ -39,8 +39,8 @@ axios.interceptors.response.use( (res)=> {
     return Promise.reject(error);
 });
 
-// let baseUrl="https://prod.mm-iworld.com/sz-map";
-let baseUrl="http://192.168.11.243:8080";
+let baseUrl="https://prod.mm-iworld.com/sz-map";
+// let baseUrl="http://192.168.11.243:8080";
 
 
 

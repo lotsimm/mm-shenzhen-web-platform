@@ -62,19 +62,12 @@
         </div>
 
 
-
-
-
         <normalDialog :normalDialogVisible.sync="normalDialogVisible" :editMsg="editMsg1" @closeDialog1="closeDialog1"
                       @createAdd1="createAdd1" :inputLabel="label"/>
-
-
-
-
         <brandDialog :brandDialogVisible.sync="brandDialogVisible" :brandArray="brandtypeArray" :editMsg="editMsg3" @closeDialog2="closeDialog2"
                      @createAdd2="createAdd2" :inputLabel="label"/>
         <brandManageDialog :brandManageDialogVisible.sync="brandManageDialogVisible" :editMsg="editMsg2"
-                           @closeDialog3="closeDialog3" @createAdd3="createAdd3" :inputLabel="label"/>
+                      @closeDialog3="closeDialog3" @createAdd3="createAdd3" :inputLabel="label"/>
 
     </div>
 </template>
@@ -85,6 +78,7 @@
     import normalDialog from "../components/dialog.vue";
     import brandDialog from "../components/brandDialog.vue";
     import brandManageDialog from "../components/brandManageDialog.vue";
+    import {areaJson} from "../static/store"
     export default {
         name: "manage.vue",
         components: {baseList, normalDialog, brandManageDialog, brandDialog},
@@ -467,6 +461,22 @@
                     this.total = res.data.total
                 })
             },
+            pointImport(){
+                areaJson.forEach(item=>{
+                                    if(item.location){
+                                        let params = {
+                                            lng: item.location.split(',')[1] * 1,
+                                            lat: item.location.split(',')[0] * 1,
+                                            name: item.name,
+                                        }
+                                        params.type = '小店'
+                                        api.mapSave(params).then(res => {
+
+                                        })
+                                    }
+
+                                })
+            },
             typeSelect(index) {
                 this.index = index
                 if (index == 1) {
@@ -546,6 +556,30 @@
             }
             this.getTableData(params, 1)
             this.getBrand()
+            // console.log(areaJson)
+            // var array = []
+            // var obj =  {"storeNo":1,"name":"小云专卖(猫猫店)","type":"online","province":"上海市","city":"上海市","district":"徐汇区","address":"上海市徐汇区宜山路","location":"31.1728,121.404533","serviceNumber":4008950110,"visible":"visible"}
+            //         array.push(obj)
+            //     array.forEach(item=>{
+            //     var isSame = areaJson.some(value=>{
+            //         return value.name = item.name
+            //     })
+            //     if(isSame){
+            //
+            //     }else{
+            //          if(item.location){
+            //             let params = {
+            //                 lng: item.location.split(',')[1] * 1,
+            //                 lat: item.location.split(',')[0] * 1,
+            //                 name: item.name,
+            //             }
+            //             params.type = '小店'
+            //             api.mapSave(params).then(res => {
+            //
+            //             })
+            //         }
+            //     }
+            // })
         },
 
     }
